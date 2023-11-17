@@ -7,7 +7,7 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background-color: black;
         margin: 0;
         padding: 0;
         display: flex;
@@ -83,5 +83,19 @@
         </div>
       </form>
     </div>
+
+    <script>
+      function attemptLogin() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Replace the following with your actual login logic
+        if (username === "yourUsername" && password === "yourPassword") {
+          window.location.href = "./second/main.html";
+        } else {
+          alert("Invalid username or password. Please try again.");
+        }
+      }
+    </script>
   </body>
 </html>
