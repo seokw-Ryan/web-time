@@ -47,10 +47,32 @@ header .icons span {
   text-align: center;
   line-height: 38px;
   border-radius: 50%;
+  background-color: #878787;
+  font-size: 1.9rem;
+}
+
+header .icons span:hover {
+  background: #dddddd;
+}
+
+header .icons span:last-child {
+  margin-right: -10px;
+}
+header .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
   background-color: #dddddd;
 }
 .calendar ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+}
+
+.calendar ul li {
+  width: calc(100% / 7);
 }
