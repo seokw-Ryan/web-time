@@ -14,3 +14,43 @@ td {
 th {
   background-color: #f2f2f2;
 }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: black;
+}
+
+.wrapper {
+  width: 450px;
+  background: #fff;
+}
+
+.wrapper header {
+  display: flex;
+  align-items: center;
+  padding: 30px 40px;
+  justify-content: space-between;
+}
+
+header .current-date {
+  font-size: 1.45em;
+  font-weight: 600;
+}
+
+header .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+  background-color: #dddddd;
+}
+.calendar ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
