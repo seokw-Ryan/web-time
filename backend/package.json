@@ -1,8 +1,0 @@
-{
-  "name": "calendar-app",
-  "version": "1.0.0",
-  "description": "A simple calendar web application",
-  "dependencies": {
-    "express": "latest"
-  }
-}
