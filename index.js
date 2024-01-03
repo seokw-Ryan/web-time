@@ -1,39 +1,79 @@
 import express from "express";
 import bodyParser from "body-parser";
-import axios from "axios";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = 3000;
 
-var userIsAuthorised = false;
+// const express = require("express");
+// const bodyParser = require("body-parser");
+// const ejs = require("ejs");
+// const mongoose = require("mongoose");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
-function passwordCheck(req, res, next) {
-  const password = req.body["password"];
-  if (password === "ILoveProgramming") {
-    userIsAuthorised = true;
-  }
-  next();
-}
-app.use(passwordCheck);
+mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true });
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+const userSchema = {
+  email: String,
+  password: String,
+};
+
+const User = new mongoose.model("User", userSchema);
+
+app.get("/", function (req, res) {
+  res.render("index");
 });
 
-app.post("/check", (req, res) => {
-  if (userIsAuthorised) {
-    res.sendFile(__dirname + "/public/secret.html");
-  } else {
-    res.sendFile(__dirname + "/public/index.html");
-    //Alternatively res.redirect("/");
-  }
+app.get("/login", function (req, res) {
+  res.render("login");
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.get("/register", function (req, res) {
+  res.render("register");
+});
+
+app.post("/register", function (req, res) {
+  const newUser = new User({
+    email: req.body.username,
+    password: req.body.password,
+  });
+  newUser.save(function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("secrets");
+    }
+  });
+});
+
+app.post("/login", function (req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  User.findOne({ email: username }, function (err, foundUser) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (foundUser) {
+        if (foundUser.password === password) {
+          res.render("secrets");
+        }
+      }
+    }
+  });
+});
+
+app.listen(3000, function () {
+  console.log("Server started on port 3000.");
 });
