@@ -1,18 +1,10 @@
-import express from "express";
-import bodyParser from "body-parser";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import mongoose from "mongoose";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+//jshint esversion:6
+const express = require("express");
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const mongoose = require("mongoose");
 
 const app = express();
-const port = 3000;
-
-// const express = require("express");
-// const bodyParser = require("body-parser");
-// const ejs = require("ejs");
-// const mongoose = require("mongoose");
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -32,15 +24,15 @@ const userSchema = {
 const User = new mongoose.model("User", userSchema);
 
 app.get("/", function (req, res) {
-  res.render("index");
+  res.render("home");
 });
 
 app.get("/login", function (req, res) {
-  res.render("login");
+  res.render("user/login");
 });
 
 app.get("/register", function (req, res) {
-  res.render("register");
+  res.render("user/register");
 });
 
 app.post("/register", function (req, res) {
