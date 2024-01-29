@@ -9,6 +9,7 @@
   left: 0;
   right: 0;
   z-index: 100;
+  background-color: azure;
 }
 
 .header-right {
@@ -16,6 +17,7 @@
   align-items: center;
   margin-right: 5px;
   border-style: solid;
+  cursor: pointer;
 }
 
 .header-left {
@@ -23,4 +25,5 @@
   align-items: center;
   margin-left: 5px;
   border-style: solid;
+  cursor: pointer;
 }
