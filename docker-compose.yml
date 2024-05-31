@@ -1,4 +1,4 @@
-
+version: '3.8'
 
 services:
   backend:
@@ -9,13 +9,8 @@ services:
       - "5000:5000"
     volumes:
       - ./backend:/app
-    environment:
-      - NODE_ENV=development
-      - PGUSER=your_db_user
-      - PGHOST=postgres
-      - PGDATABASE=your_db_name
-      - PGPASSWORD=your_db_password
-      - PGPORT=5432
+    env_file:
+      - ./backend/.env
     depends_on:
       - postgres
 

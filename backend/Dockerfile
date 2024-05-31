@@ -7,7 +7,10 @@ WORKDIR /app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies, including Sequelize and the PostgreSQL driver
+RUN npm install sequelize pg pg-hstore
+
+# Install other dependencies
 RUN npm install
 
 # Copy the rest of the application code
