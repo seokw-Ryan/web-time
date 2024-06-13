@@ -6,7 +6,7 @@ async function initializeDatabase() {
     console.log('Database connection has been established successfully.');
 
     await sequelize.sync({ force: true });
-    console.log('Database tables created successfully.');
+    console.log('Databa se tables created successfully.');
 
     // You can add any additional initialization logic here, such as seeding initial data
 
