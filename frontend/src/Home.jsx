@@ -26,28 +26,21 @@ const Calendar = () => {
       );
     }
 
+    // Pad the remaining cells with empty cells to complete the grid
+    const remainingCells = 7 - (dates.length % 7);
+    for (let i = 0; i < remainingCells; i++) {
+      dates.push(<div key={`empty-${dates.length + i}`} className="empty-cell"></div>);
+    }
+
     // Wrap the date cells in rows
     const rows = [];
-    let cells = [];
-    dates.forEach((date, i) => {
-      if (i % 7 !== 0) {
-        cells.push(date);
-      } else {
-        rows.push(
-          <div key={`row-${i}`} className="calendar-row">
-            {cells}
-          </div>
-        );
-        cells = [date];
-      }
-      if (i === dates.length - 1) {
-        rows.push(
-          <div key={`row-${i}`} className="calendar-row">
-            {cells}
-          </div>
-        );
-      }
-    });
+    for (let i = 0; i < dates.length; i += 7) {
+      rows.push(
+        <div key={`row-${i}`} className="calendar-row">
+          {dates.slice(i, i + 7)}
+        </div>
+      );
+    }
 
     return rows;
   };
@@ -63,9 +56,9 @@ const Calendar = () => {
           <button className="nav-btn">&gt;</button>
         </div>
       </div>
-      <div className="calendar-days">
+      <div className="calendar-weekdays">
         {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
-          <div key={index} className="day-label">{day}</div>
+          <div key={index} className="weekday">{day}</div>
         ))}
       </div>
       <div className="calendar-grid">{renderCalendar()}</div>
