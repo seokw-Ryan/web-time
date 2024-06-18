@@ -3,159 +3,181 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     background-color: #121212; /* Dark background */
     color: #ffffff; /* White text color */
     font-family: Helvetica, Arial, sans-serif; /* Change font to Helvetica */
-  }
-  
-  .home-container {
+    font-size: 14px; /* Set global font size */
+    overflow: hidden; /* Prevent page scroll */
+}
+
+.home-container {
     font-family: Helvetica, Arial, sans-serif;
-  }
-  
-  .header {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px 20px; /* Reduce header padding */
     background-color: #1e1e1e; /* Darker background for header */
     border-bottom: 1px solid #333; /* Lighter border color */
-  }
-  
-  .logo-left {
-    font-size: 1.5em;
+    font-size: 14px; /* Ensure header font size is consistent */
+}
+
+.logo-left, .logo {
+    font-size: 14px; /* Set logo font size */
     font-weight: bold;
     color: #ffffff; /* White text color */
-  }
-  
-  .logo {
-    font-size: 1.5em;
-    font-weight: bold;
+}
+
+.main-content {
+    padding: 10px 20px; /* Reduce main content padding */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent main content scroll */
+}
+
+.section-header {
+    padding: 5px 0; /* Adjust section header padding */
+    font-size: 14px; /* Ensure section header font size is consistent */
+}
+
+.section-title {
     color: #ffffff; /* White text color */
-  }
-  
-  .main-content {
-    padding: 20px;
-  }
-  
-  .section-header {
-    padding: 10px 20px;
-  }
-  
-  .section-title {
-    color: #ffffff; /* White text color */
-  }
-  
-  .week-view {
+}
+
+.week-view {
     width: 100%;
-    padding: 20px;
+    padding: 10px; /* Reduce padding */
     border: 1px solid #333; /* Lighter border color */
     border-radius: 5px;
     background-color: #1e1e1e; /* Darker background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker shadow */
-    margin-bottom: 40px; /* Add more space below the week container */
+    margin-bottom: 5px; /* Reduce space below the week container */
     position: relative;
-  }
-  
-  .bottom-container {
+    overflow-y: auto; /* Scrollable week view */
+    font-size: 14px; /* Ensure week view font size is consistent */
+}
+
+.bottom-container {
     display: flex;
     justify-content: space-between;
-  }
-  
-  .section-container {
-    width: 48%;
-  }
-  
-  .month-view,
-  .day-view {
-    padding: 20px;
+    flex: 1;
+    overflow: hidden; /* Prevent bottom container scroll */
+    gap: 10px; /* Add gap between month and day sections */
+}
+
+.section-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px; /* Ensure section container font size is consistent */
+}
+
+.equal-size {
+    flex: 1;
+}
+
+.month-view,
+.day-view {
+    padding: 10px; /* Reduce padding */
     border: 1px solid #333; /* Lighter border color */
     border-radius: 5px;
     background-color: #1e1e1e; /* Darker background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker shadow */
     position: relative;
-  }
-  
-  .month-view {
-    overflow-x: scroll; /* Make month-view scrollable horizontally */
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-  
-  .calendar {
+    flex: 1;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 100%; /* Ensure equal height */
+}
+
+.calendar {
     width: 100%;
-  }
-  
-  .calendar-header {
+    height: 100%; /* Use all available height */
+    overflow: hidden; /* Prevent calendar scroll */
+}
+
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-  }
-  
-  .calendar-title {
-    font-size: 1.2em;
+    padding: 5px 0; /* Reduce padding */
+    font-size: 14px; /* Ensure calendar header font size is consistent */
+}
+
+.calendar-title {
+    font-size: 14px; /* Set calendar title font size */
     font-weight: bold;
-  }
-  
-  .calendar-nav .nav-btn {
+}
+
+.calendar-nav .nav-btn {
     background-color: #333;
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-  }
-  
-  .calendar-weekdays {
+}
+
+.calendar-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .weekday {
+    margin-bottom: 5px; /* Reduce margin */
+}
+
+.weekday {
     text-align: center;
     font-weight: bold;
     color: #ffffff;
-  }
-  
-  .calendar-grid {
+}
+
+.calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-  }
-  
-  .calendar-row {
+    height: calc(100% - 30px); /* Adjust height to fit inside container */
+}
+
+.calendar-row {
     display: contents;
-  }
-  
-  .empty-cell,
-  .date-cell {
+}
+
+.empty-cell,
+.date-cell {
     background-color: #2e2e2e;
     color: #ffffff;
     padding: 10px;
     border-radius: 3px;
     text-align: center;
     aspect-ratio: 1/1;
-  }
-  
-  .time-list {
+}
+
+.time-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .time-slot {
+    flex: 1;
+    overflow-y: auto; /* Make time list scrollable */
+}
+
+.time-slot {
     padding: 10px;
     border-bottom: 1px solid #333;
     display: flex;
     align-items: center;
-  }
-  
-  .time-label {
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+}
+
+.time-label {
     margin-right: 10px;
     color: #ffffff; /* White text */
-  }
+}
