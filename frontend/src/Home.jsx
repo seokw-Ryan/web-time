@@ -81,7 +81,7 @@ const Home = () => {
           {/* Week view content goes here */}
         </section>
         <div className="bottom-container">
-          <div className="section-container">
+          <div className="section-container equal-size">
             <div className="section-header">
               <h2 className="section-title">Month</h2>
             </div>
@@ -89,7 +89,7 @@ const Home = () => {
               <Calendar />
             </section>
           </div>
-          <div className="section-container">
+          <div className="section-container equal-size">
             <div className="section-header">
               <h2 className="section-title">Day</h2>
             </div>
