@@ -63,6 +63,11 @@ const Calendar = () => {
           <button className="nav-btn">&gt;</button>
         </div>
       </div>
+      <div className="calendar-days">
+        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+          <div key={index} className="day-label">{day}</div>
+        ))}
+      </div>
       <div className="calendar-grid">{renderCalendar()}</div>
     </div>
   );
