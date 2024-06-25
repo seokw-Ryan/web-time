@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css'; // We'll create this file for specific DayView styles
+import './Home.css';
 
 const DayView = ({ date = new Date() }) => {
   const hours = Array.from({ length: 24 }, (_, i) => i);

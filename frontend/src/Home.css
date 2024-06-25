@@ -10,11 +10,10 @@ body {
     color: #ffffff;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
-    overflow: hidden;
 }
 
 .home-container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -29,246 +28,83 @@ body {
     border-bottom: 1px solid #333;
 }
 
-.logo-left, .logo {
-    font-size: 14px;
-    font-weight: bold;
-}
-
 /* Main content styles */
 .main-content {
-    padding: 10px 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-}
-
-.section-header {
-    padding: 5px 0;
+    padding: 20px;
 }
 
 .section-title {
-    color: #ffffff;
+    margin-bottom: 10px;
 }
 
 /* Week view styles */
 .week-view {
-    width: 100%;
-    padding: 10px;
     border: 1px solid #333;
     border-radius: 5px;
     background-color: #1e1e1e;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    margin-bottom: 5px;
-    position: relative;
-    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 /* Bottom container styles */
 .bottom-container {
     display: flex;
-    justify-content: space-between;
-    flex: 1;
-    overflow: hidden;
-    gap: 10px;
-}
-
-.section-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.equal-size {
-    flex: 1;
+    gap: 20px;
+    justify-content: center;
 }
 
 .month-view,
 .day-view {
-    padding: 10px;
+    width: 400px;
+    height: 400px;
     border: 1px solid #333;
     border-radius: 5px;
     background-color: #1e1e1e;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    position: relative;
-    flex: 1;
-    overflow-y: auto;
-    height: 100%;
-}
-
-/* Calendar styles */
-.calendar {
-    width: 100%;
-    height: 100%;
     overflow: hidden;
 }
 
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-}
-
-.calendar-header h2 {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.calendar-nav button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.calendar-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    margin-bottom: 5px;
-}
-
-.weekday {
-    text-align: center;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.calendar-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    height: calc(100% - 30px);
-}
-
-.calendar-day {
-    background-color: #2e2e2e;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 3px;
-    text-align: center;
-    aspect-ratio: 1/1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.calendar-day:hover {
-    background-color: #3e3e3e;
-}
-
-.calendar-day.empty {
-    background-color: #1e1e1e;
-}
-
-.calendar-day.selected {
-    background-color: #007bff;
-    color: white;
-}
-
 /* Day view styles */
-.time-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.day-view {
+    display: flex;
+    flex-direction: column;
+}
+
+.day-header {
+    padding: 10px;
+    background-color: #2c2c2c;
+    text-align: center;
+}
+
+.time-slots {
     flex: 1;
     overflow-y: auto;
 }
 
 .time-slot {
-    padding: 10px;
-    border-bottom: 1px solid #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.time-label {
-    margin-right: 10px;
-    color: #ffffff;
-}
-
-/* ... (keep existing styles) ... */
-
-/* Day view styles */
-.day-view {
-    height: 100%;
-    overflow-y: auto;
-    position: relative;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #ffffff;
-    background-color: #1e1e1e;
-  }
-  
-  .day-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    position: sticky;
-    top: 0;
-    background-color: #1e1e1e;
-    z-index: 1;
-  }
-  
-  .day-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .day-name {
-    font-size: 12px;
-    color: #888;
-  }
-  
-  .day-number {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .timezone {
-    font-size: 12px;
-    color: #888;
-  }
-  
-  .time-slots {
-    position: relative;
-  }
-  
-  .time-slot {
     display: flex;
     height: 60px;
     border-top: 1px solid #333;
-  }
-  
-  .time-label {
+}
+
+.time-label {
     width: 50px;
     padding: 5px;
     text-align: right;
     font-size: 12px;
     color: #888;
-  }
-  
-  .time-content {
+}
+
+.time-content {
     flex-grow: 1;
     border-left: 1px solid #333;
-  }
-  
-  .event {
-    position: absolute;
-    left: 50px;
-    right: 0;
-    background-color: #007bff;
-    color: white;
-    padding: 5px;
-    font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border-radius: 3px;
-  }
+}
+
+@media (max-width: 850px) {
+    .bottom-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
