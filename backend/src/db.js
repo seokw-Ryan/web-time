@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize('postgres://postgres:dbpass@localhost:5436/postgres', {
   dialect: 'postgres',
   logging: false,
 });

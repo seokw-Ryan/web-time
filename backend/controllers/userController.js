@@ -12,6 +12,10 @@ exports.createUser = async (req, res) => {
 
 // Get all users
 exports.getAllUsers = async (req, res) => {
-    const users = await User.findAll();
-    res.json(users);
+    try {
+        const users = await User.findAll();
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
 };
