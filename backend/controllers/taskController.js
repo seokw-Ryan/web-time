@@ -6,7 +6,7 @@ exports.createTaskForUser = async (req, res) => {
         const user = await User.findByPk(req.params.userId);
         if (user) {
             const task = await Task.create({ ...req.body, userId: req.params.userId });
-            res.status(201).json(task);
+            res.status(200).json(task);
         } else {
             res.status(404).json({ error: 'User not found' });
         }
