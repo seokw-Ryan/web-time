@@ -1,31 +1,56 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - "3000:3000"
+  postgres:
+    image: postgres:13
+    container_name: daiw-postgres
     environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true # Ensures that file changes are detected within Docker
+      POSTGRES_DB: homepage_db
+      POSTGRES_USER: ryan
+      POSTGRES_PASSWORD: seokwoo
+    ports:
+      - "5432:5432"
+    networks:
+      - web-time_default
     volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
-    stdin_open: true
-    tty: true
-    command: npm start
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/init_db:/docker-entrypoint-initdb.d
 
-  backend:
-    build:
-      context: ./backend
-    ports:
-      - "5000:5000"
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
-    stdin_open: true
-    tty: true
-    command: npm start
+  # backend:
+  #   build: ./backend
+  #   container_name: daiw-backend
+  #   environment:
+  #     DB_NAME: homepage_db
+  #     DB_USER: ryan
+  #     DB_PASSWORD: seokwoo
+  #     DB_HOST: daiw-postgres
+  #     DB_PORT: 5432
+  #     JWT_SECRET: your_jwt_secret
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - web-time_default
+  
+  frontend:
+      build:
+        context: ./frontend
+      ports:
+        - "3000:3000"
+      environment:
+        - NODE_ENV=development
+        - CHOKIDAR_USEPOLLING=true # Ensures that file changes are detected within Docker
+      volumes:
+        - ./frontend:/usr/src/app
+        - /usr/src/app/node_modules
+      stdin_open: true
+      tty: true
+      command: npm start
+
+volumes:
+  postgres_data:
+
+networks:
+  web-time_default:
+    external: true

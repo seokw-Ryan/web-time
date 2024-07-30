@@ -1,52 +1,54 @@
-function App() {
-  return (
-    <div className="calendar-app">
-      <header>
-        <button className="menu-button">≡</button>
-        <div className="logo">
-          <img src="calendar-icon.png" alt="Calendar" />
-          <span>Calendar</span>
-        </div>
-        <nav>
-          <button>Today</button>
-          <button>&lt;</button>
-          <button>&gt;</button>
-          <span>July 2024</span>
-        </nav>
-        <div className="right-controls">
-          <input type="text" placeholder="Search" />
-          <button>?</button>
-          <button>⚙</button>
-          <select>
-            <option>Week</option>
-          </select>
-        </div>
-      </header>
-      <main>
+import React, { useState } from 'react';
+
+const App = () => {
+    const [currentDate, setCurrentDate] = useState(new Date());
+
+    const renderHeader = () => (
+        <header>
+            <div className="menu-icon">≡</div>
+            <h1>Calendar</h1>
+            <button>Today</button>
+            <div className="nav-buttons">
+                <button>{"<"}</button>
+                <button>{">"}</button>
+            </div>
+            <h2>{`${currentDate.toLocaleString('default', { month: 'short' })} - ${currentDate.getFullYear()}`}</h2>
+            <div className="right-icons">
+                <button>Search</button>
+                <button>Help</button>
+                <button>Settings</button>
+            </div>
+        </header>
+    );
+
+    const renderSidebar = () => (
         <aside>
-          <button className="create-button">Create</button>
-          <div className="mini-calendar">
-            {/* Mini calendar component */}
-          </div>
-          <div className="search-people">
-            <input type="text" placeholder="Search for people" />
-          </div>
-          <div className="my-calendars">
-            <h3>My calendars</h3>
-            <ul>
-              <li>ryanc</li>
-              <li>class</li>
-              <li>Clubs</li>
-              <li>Exercise</li>
-            </ul>
-          </div>
+            <button className="create-button">Create</button>
+            <div className="mini-calendar">
+                {/* Mini calendar implementation */}
+            </div>
+            <div className="calendars-list">
+                <h3>My calendars</h3>
+                {/* List of calendars */}
+            </div>
         </aside>
-        <section className="main-calendar">
-          {/* Main calendar grid */}
-        </section>
-      </main>
-    </div>
-  );
-}
+    );
+
+    const renderMainCalendar = () => (
+        <main>
+            {/* Main calendar grid implementation */}
+        </main>
+    );
+
+    return (
+        <div className="calendar-app">
+            {renderHeader()}
+            <div className="main-content">
+                {renderSidebar()}
+                {renderMainCalendar()}
+            </div>
+        </div>
+    );
+};
 
 export default App;
