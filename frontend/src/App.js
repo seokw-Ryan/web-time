@@ -1,51 +1,37 @@
 import React, { useState } from 'react';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import MainCalendar from './components/MainCalendar';
+import './styles/styles.css';
 
 const App = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
 
-    const renderHeader = () => (
-        <header>
-            <div className="menu-icon">≡</div>
-            <h1>Calendar</h1>
-            <button>Today</button>
-            <div className="nav-buttons">
-                <button>{"<"}</button>
-                <button>{">"}</button>
-            </div>
-            <h2>{`${currentDate.toLocaleString('default', { month: 'short' })} - ${currentDate.getFullYear()}`}</h2>
-            <div className="right-icons">
-                <button>Search</button>
-                <button>Help</button>
-                <button>Settings</button>
-            </div>
-        </header>
-    );
+    const handleTodayClick = () => {
+        setCurrentDate(new Date());
+    };
 
-    const renderSidebar = () => (
-        <aside>
-            <button className="create-button">Create</button>
-            <div className="mini-calendar">
-                {/* Mini calendar implementation */}
-            </div>
-            <div className="calendars-list">
-                <h3>My calendars</h3>
-                {/* List of calendars */}
-            </div>
-        </aside>
-    );
+    const handlePrevClick = () => {
+        const prevMonth = new Date(currentDate.setMonth(currentDate.getMonth() - 1));
+        setCurrentDate(new Date(prevMonth));
+    };
 
-    const renderMainCalendar = () => (
-        <main>
-            {/* Main calendar grid implementation */}
-        </main>
-    );
+    const handleNextClick = () => {
+        const nextMonth = new Date(currentDate.setMonth(currentDate.getMonth() + 1));
+        setCurrentDate(new Date(nextMonth));
+    };
 
     return (
         <div className="calendar-app">
-            {renderHeader()}
+            <Header
+                currentDate={currentDate}
+                onTodayClick={handleTodayClick}
+                onPrevClick={handlePrevClick}
+                onNextClick={handleNextClick}
+            />
             <div className="main-content">
-                {renderSidebar()}
-                {renderMainCalendar()}
+                <Sidebar />
+                <MainCalendar currentDate={currentDate} />
             </div>
         </div>
     );
