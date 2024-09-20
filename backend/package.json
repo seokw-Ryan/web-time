@@ -12,6 +12,7 @@
   "keywords": [],
   "description": "",
   "dependencies": {
+    "sequelize": "^6.33.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "pg": "^8.11.5"
