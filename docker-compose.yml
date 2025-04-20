@@ -1,7 +1,34 @@
 version: '3.8'
 
 services:
-  # Production web server
+  # PostgreSQL database
+  db:
+    image: postgres
+    container_name: webtime-db
+    environment:
+      POSTGRES_DB: webtime
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dbpass
+    ports:
+      - 5432:5432
+    networks:
+      - calendar-network
+
+  # Production Express server
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - calendar-network
+
+  # Production frontend (e.g. Vite + React served by Nginx)
   web:
     build:
       context: .
@@ -13,21 +40,23 @@ services:
       - calendar-network
 
   # Development server with hot-reloading
-  dev:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    command: npm run dev
-    networks:
-      - calendar-network
+  # dev:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - NODE_ENV=development
+  #   command: npm run dev
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - calendar-network
 
 networks:
   calendar-network:
-    driver: bridge 
+    driver: bridge

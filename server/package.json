@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest run",
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@types/uuid": "^9.0.8",
-    "axios": "^1.8.4",
     "date-fns": "^2.30.0",
     "express": "^5.1.0",
     "ics": "^3.5.0",
