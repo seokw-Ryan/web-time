@@ -1,4 +1,4 @@
-import { createEvent as createICSEvent, Event as ICSEvent } from 'ics';
+import { createEvent as createICSEvent, EventAttributes } from 'ics';
 import { CalendarEvent } from './types';
 import { RRule } from 'rrule';
 import { format } from 'date-fns';
@@ -21,13 +21,13 @@ export const dateToICSFormat = (date: Date): [number, number, number, number, nu
  */
 export const exportEventToICS = (event: CalendarEvent): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const icsEvent: ICSEvent = {
+    const icsEvent: EventAttributes = {
       start: dateToICSFormat(event.start),
       end: dateToICSFormat(event.end),
       title: event.title,
       description: event.description || '',
       location: event.location || '',
-      status: 'CONFIRMED',
+      status: event.recurrenceRule ? 'CONFIRMED' : undefined,
       busyStatus: 'BUSY',
       productId: 'minimal-calendar-app'
     };
@@ -186,11 +186,15 @@ export const readICSFile = (file: File): Promise<string> => {
     const reader = new FileReader();
     
     reader.onload = (e) => {
-      const content = e.target?.result as string;
-      resolve(content);
+      if (e.target) {
+        const content = e.target.result as string;
+        resolve(content);
+      } else {
+        reject(new Error('Failed to read file'));
+      }
     };
     
-    reader.onerror = (e) => {
+    reader.onerror = () => {
       reject(new Error('Failed to read ICS file'));
     };
     

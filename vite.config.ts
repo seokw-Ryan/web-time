@@ -14,6 +14,10 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.png'],
+      strategies: 'injectManifest',
+      injectManifest: {
+        injectionPoint: undefined
+      },
       manifest: {
         name: 'Minimal Calendar App',
         short_name: 'Calendar',

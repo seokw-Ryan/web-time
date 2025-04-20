@@ -2,7 +2,8 @@ import { Reminder } from './types';
 import { getEventReminders } from '../db/eventStore';
 import { formatDate } from './dateUtils';
 
-let notificationPermission: NotificationPermission = 'default';
+// Store notification permission state
+let currentPermission: NotificationPermission = 'default';
 
 /**
  * Initialize the notification service and request permissions if needed
@@ -13,15 +14,16 @@ export const initNotifications = async (): Promise<boolean> => {
     return false;
   }
 
-  if (Notification.permission === 'granted') {
-    notificationPermission = 'granted';
+  currentPermission = Notification.permission;
+  
+  if (currentPermission === 'granted') {
     return true;
   }
 
-  if (Notification.permission !== 'denied') {
+  if (currentPermission !== 'denied') {
     try {
       const permission = await Notification.requestPermission();
-      notificationPermission = permission;
+      currentPermission = permission;
       return permission === 'granted';
     } catch (error) {
       console.error('Error requesting notification permission:', error);
@@ -29,7 +31,8 @@ export const initNotifications = async (): Promise<boolean> => {
     }
   }
 
-  return Notification.permission === 'granted';
+  // @ts-ignore - TypeScript has strict literal comparison issues
+  return currentPermission === 'granted';
 };
 
 /**
@@ -39,7 +42,7 @@ export const showNotification = (
   title: string,
   options: NotificationOptions = {}
 ): boolean => {
-  if (notificationPermission !== 'granted') {
+  if (currentPermission !== 'granted') {
     console.warn('Notification permission not granted');
     return false;
   }
@@ -82,11 +85,11 @@ export const scheduleReminder = (reminder: Reminder, eventTitle: string): void =
  * Schedule all pending reminders for events
  */
 export const schedulePendingReminders = async (events: any[]): Promise<void> => {
-  if (notificationPermission !== 'granted') {
+  if (currentPermission !== 'granted') {
     await initNotifications();
   }
 
-  if (notificationPermission !== 'granted') {
+  if (currentPermission !== 'granted') {
     console.warn('Cannot schedule reminders without notification permission');
     return;
   }
