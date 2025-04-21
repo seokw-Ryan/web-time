@@ -9,6 +9,7 @@ const MonthView = lazy(() => import('./routes/MonthView'))
 const WeekView = lazy(() => import('./routes/WeekView'))
 const DayView = lazy(() => import('./routes/DayView'))
 const EventDetail = lazy(() => import('./routes/EventDetail'))
+const Settings = lazy(() => import('./routes/Settings'))
 const NotFound = lazy(() => import('./routes/NotFound'))
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="week" element={<WeekView />} />
           <Route path="day/:date?" element={<DayView />} />
           <Route path="event/:id" element={<EventDetail />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
