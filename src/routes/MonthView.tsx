@@ -78,37 +78,44 @@ const MonthView: React.FC = () => {
     const dayEvents = getDayEvents(day);
     
     return (
-      <div 
+      <div
         key={index}
-        className={`calendar-cell p-1 ${
-          isCurrentMonth ? 'bg-white' : 'bg-gray-100 text-gray-400'
-        } ${isCurrentDay ? 'border-blue-500 border-2' : ''}`}
+        className="relative bg-background dark:bg-[#202124] hover:bg-[rgba(26,115,232,0.04)] dark:hover:bg-[rgba(138,180,248,0.06)] p-2 min-h-[120px] flex flex-col"
         onClick={() => handleDayClick(day)}
       >
-        <div className="text-right w-full">
-          <span className={`inline-block rounded-full w-7 h-7 text-center leading-7 ${
-            isCurrentDay ? 'bg-blue-500 text-white' : ''
-          }`}>
-            {format(day, 'd')}
-          </span>
+        <div className="flex items-center text-[12px] font-semibold text-foreground">
+          <span>{format(day, 'EEE').toUpperCase()}</span>
+          <span className="ml-1">{format(day, 'd')}</span>
         </div>
-        
-        <div className="mt-1 overflow-y-auto max-h-16">
-          {dayEvents.slice(0, 3).map((event, eventIndex) => (
-            <div 
-              key={eventIndex}
-              className={`text-xs truncate rounded px-1 my-1 ${
-                event.isAllDay ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
-              }`}
-            >
-              {event.title}
-            </div>
-          ))}
-          {dayEvents.length > 3 && (
-            <div className="text-xs text-gray-500 truncate px-1">
-              +{dayEvents.length - 3} more
-            </div>
-          )}
+        <div className="mt-2 flex-1 space-y-1">
+          {dayEvents
+            .filter(event => event.isAllDay)
+            .map((event, idx) => (
+              <div
+                key={idx}
+                className="h-5 rounded-[4px] px-2 text-[12px] flex items-center overflow-hidden whitespace-nowrap text-ellipsis"
+                style={{ backgroundColor: event.color || '#4285F4', color: '#fff' }}
+              >
+                {event.title}
+              </div>
+            ))}
+          {dayEvents
+            .filter(event => !event.isAllDay)
+            .map((event, idx) => (
+              <div
+                key={idx}
+                className="flex items-center text-[13px] leading-[18px] gap-[6px] overflow-hidden whitespace-nowrap text-ellipsis"
+              >
+                <span
+                  className="inline-block w-[6px] h-[6px] rounded-full flex-shrink-0"
+                  style={{ backgroundColor: event.color || '#34A853' }}
+                ></span>
+                <span>{format(event.start, 'h:mm a')}</span>
+                <span className="flex-1 overflow-hidden whitespace-nowrap text-ellipsis">
+                  {event.title}
+                </span>
+              </div>
+            ))}
         </div>
       </div>
     );
@@ -153,21 +160,12 @@ const MonthView: React.FC = () => {
           <p>Loading calendar...</p>
         </div>
       ) : (
-        <>
-          {/* Weekday headers */}
-          <div className="calendar-grid mb-1">
-            {WEEKDAYS.map((day, index) => (
-              <div key={index} className="text-center font-medium py-2">
-                {day}
-              </div>
-            ))}
-          </div>
-          
-          {/* Calendar grid */}
-          <div className="calendar-grid h-[calc(100vh-240px)]">
+        <div className="relative flex-1 overflow-auto">
+          <div className="grid grid-cols-7 gap-px bg-[#E8EAED] dark:bg-[#3C4043] rounded-lg overflow-hidden">
             {calendarDays.map((day, index) => renderDay(day, index))}
           </div>
-        </>
+          <div className="pointer-events-none absolute top-0 right-0 bottom-[64px] w-8 bg-gradient-to-l from-transparent to-[#E8EAED] dark:to-[rgba(0,0,0,0.25)]"></div>
+        </div>
       )}
     </div>
   );
