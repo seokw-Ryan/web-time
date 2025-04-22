@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 
 // Layout
@@ -17,7 +17,8 @@ function App() {
     <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MonthView />} />
+          <Route index element={<Navigate to="/month" replace />} />
+          <Route path="month" element={<MonthView />} />
           <Route path="week" element={<WeekView />} />
           <Route path="day/:date?" element={<DayView />} />
           <Route path="event/:id" element={<EventDetail />} />

@@ -1,4 +1,5 @@
 import { Outlet, Link } from 'react-router-dom'
+import ViewToggle from './ViewToggle'
 import { useState, useEffect } from 'react'
 
 const Layout = () => {
@@ -43,7 +44,7 @@ const Layout = () => {
         {/* Spacer */}
         <div className="flex-1" />
         {/* Global icons */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
           {/* Search */}
           <button className="p-2 rounded hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.08)] focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,36 +61,8 @@ const Layout = () => {
           <button onClick={toggleTheme} className="p-2 rounded hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.08)] focus:outline-none">
             {theme === 'light' ? <span className="text-2xl text-foreground">🌙</span> : <span className="text-2xl text-foreground">☀️</span>}
           </button>
-          {/* View Selector */}
-          <div className="relative">
-            <button className="flex items-center text-sm text-foreground">
-              Month
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-2 text-foreground" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0l-4.25-4.25a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-              </svg>
-            </button>
-          </div>
-          {/* Calendar View Toggle */}
-          <button className="h-8 w-8 bg-[#4285F4] text-white rounded flex items-center justify-center hover:bg-[#3367D6] focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M6 2a1 1 0 00-1 1v4h10V3a1 1 0 00-1-1H6z" />
-              <path d="M3 7h14v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-            </svg>
-          </button>
-          {/* Tasks Toggle */}
-          <button className="h-8 w-8 bg-[#1A73E8] text-white rounded-full flex items-center justify-center hover:bg-[#1669C1] focus:outline-none">
-            <span className="text-white text-lg">✓</span>
-          </button>
-          {/* Apps Grid */}
-          <button className="p-2 rounded hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.08)] focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-foreground" fill="currentColor" viewBox="0 0 24 24">
-              {Array.from({ length: 9 }).map((_, i) => {
-                const x = (i % 3) * 8 + 3;
-                const y = Math.floor(i / 3) * 8 + 3;
-                return <circle key={i} cx={x} cy={y} r="2" />;
-              })}
-            </svg>
-          </button>
+          {/* View Toggle */}
+          <ViewToggle />
           {/* User Avatar */}
           <div className="h-8 w-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm">R</div>
         </div>
@@ -107,28 +80,14 @@ const Layout = () => {
               <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0l-4.25-4.25a.75.75 0 01.02-1.06z" clipRule="evenodd" />
             </svg>
           </button>
-          <div className="relative mt-4">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M8 9a3 3 0 11-6 0 3 3 0 016 0zm8-3a1 1 0 100 2h1a1 1 0 100-2h-1z" />
-              </svg>
-            </div>
-            <input type="text" placeholder="Search for people" className="h-10 w-full pl-10 pr-3 rounded-md bg-gray-100 dark:bg-[#3C4043] placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" />
-          </div>
         </aside>
         {/* Main Content */}
         <main className="flex-1 bg-background text-foreground overflow-auto">
           <Outlet />
         </main>
-        {/* Right Rail */}
-        <aside className="w-[60px] bg-background border-l border-gray-200 dark:border-gray-700 p-2 flex-shrink-0 flex flex-col items-center space-y-4">
-          {['💡', '✅', '👤', '📍'].map((icon, i) => (
-            <button key={i} className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
-              <span className="text-lg">{icon}</span>
-            </button>
-          ))}
-          <button className="w-10 h-10 rounded-full flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">+</button>
-          <button className="mt-auto mb-2 text-2xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center focus:outline-none">›</button>
+        {/* Right Rail (icons removed, only avatar remains in header) */}
+        <aside className="w-[60px] bg-background border-l border-gray-200 dark:border-gray-700 p-2 flex-shrink-0 flex flex-col items-center min-h-fit">
+          {/* toolbar icons have been removed per updated design */}
         </aside>
       </div>
       {/* Footer */}
