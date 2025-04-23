@@ -1,4 +1,4 @@
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useNavigate } from 'react-router-dom'
 import ViewToggle from './ViewToggle'
 import { useState, useEffect } from 'react'
 
@@ -23,6 +23,9 @@ const Layout = () => {
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
+
+  // Navigation for create button
+  const navigate = useNavigate()
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -71,7 +74,7 @@ const Layout = () => {
       <div className="flex flex-1">
         {/* Left Panel */}
         <aside className="w-[260px] bg-background border-r border-gray-200 dark:border-gray-700 p-4 flex-shrink-0">
-          <button className="flex items-center h-12 rounded-lg bg-[#1A73E8] hover:bg-[#1669C1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] text-white px-6 gap-3">
+          <button onClick={() => navigate('/event/new')} className="flex items-center h-12 rounded-lg bg-[#1A73E8] hover:bg-[#1669C1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] text-white px-6 gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
             </svg>
