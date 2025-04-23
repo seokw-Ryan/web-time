@@ -28,7 +28,7 @@ const Layout = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-screen flex flex-col overflow-hidden">
       {/* Global Header */}
       <header className="flex items-center h-[64px] px-6 bg-white dark:bg-[#202124] shadow-md">
         {/* Hamburger */}
@@ -71,7 +71,7 @@ const Layout = () => {
         </div>
       </header>
       {/* Content Layout */}
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
         {/* Left Panel */}
         <aside className="w-[260px] bg-background border-r border-gray-200 dark:border-gray-700 p-4 flex-shrink-0">
           <button onClick={() => navigate('/event/new')} className="flex items-center h-12 rounded-lg bg-[#1A73E8] hover:bg-[#1669C1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] text-white px-6 gap-3">
@@ -85,7 +85,7 @@ const Layout = () => {
           </button>
         </aside>
         {/* Main Content */}
-        <main className="flex-1 bg-background text-foreground overflow-auto">
+        <main className="flex-1 bg-background text-foreground overflow-hidden">
           <Outlet />
         </main>
         {/* Right Rail (icons removed, only avatar remains in header) */}

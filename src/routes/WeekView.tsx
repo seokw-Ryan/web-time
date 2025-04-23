@@ -40,7 +40,7 @@ export default function WeekView() {
   }, [today])
 
   return (
-    <section className="relative overflow-auto h-full">
+    <section className="relative h-full overflow-y-auto overflow-x-hidden">
       <div className="grid grid-cols-8 min-w-[1200px] relative">
         {/* Time labels */}
         <div className="border-r bg-gray-50 dark:bg-gray-800">
