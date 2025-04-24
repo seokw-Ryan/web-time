@@ -1,11 +1,11 @@
 # Stage 1: Build the application
-FROM node:18-alpine AS build
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
 # Copy package files and install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -14,10 +14,14 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the application using Nginx
-FROM nginx:alpine
+FROM nginx:alpine AS runtime
+WORKDIR /usr/share/nginx/html
 
-# Copy the built application from the build stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Wipe default content
+RUN rm -rf ./*
+
+# Copy everything under dist/, preserving icons/
+COPY --from=builder /app/dist/ ./
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf

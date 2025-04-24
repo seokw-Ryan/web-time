@@ -1,4 +1,4 @@
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useNavigate } from 'react-router-dom'
 import ViewToggle from './ViewToggle'
 import { useState, useEffect } from 'react'
 
@@ -24,8 +24,11 @@ const Layout = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
+  // Navigation for create button
+  const navigate = useNavigate()
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-screen flex flex-col overflow-hidden">
       {/* Global Header */}
       <header className="flex items-center h-[64px] px-6 bg-white dark:bg-[#202124] shadow-md">
         {/* Hamburger */}
@@ -63,15 +66,11 @@ const Layout = () => {
           </button>
           {/* View Toggle */}
           <ViewToggle />
-          {/* User Avatar */}
-          <div className="h-8 w-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm">R</div>
-        </div>
-      </header>
-      {/* Content Layout */}
-      <div className="flex flex-1">
-        {/* Left Panel */}
-        <aside className="w-[260px] bg-background border-r border-gray-200 dark:border-gray-700 p-4 flex-shrink-0">
-          <button className="flex items-center h-12 rounded-lg bg-[#1A73E8] hover:bg-[#1669C1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] text-white px-6 gap-3">
+          {/* Create button relocated from sidebar */}
+          <button
+            onClick={() => navigate('/event/new')}
+            className="flex items-center h-12 rounded-lg bg-[#1A73E8] hover:bg-[#1669C1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] text-white px-6 gap-3"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
             </svg>
@@ -80,10 +79,22 @@ const Layout = () => {
               <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0l-4.25-4.25a.75.75 0 01.02-1.06z" clipRule="evenodd" />
             </svg>
           </button>
+          {/* User Avatar */}
+          <div className="h-8 w-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm">R</div>
+        </div>
+      </header>
+      {/* Content Layout */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Left Panel (sidebar) */}
+        <aside className="w-[240px] bg-background border-r border-gray-200 dark:border-gray-700 p-4 flex-shrink-0">
+          {/* Sidebar navigation items */}
         </aside>
         {/* Main Content */}
-        <main className="flex-1 bg-background text-foreground overflow-auto">
-          <Outlet />
+        <main className="flex-1 overflow-auto bg-background text-foreground flex items-center justify-center">
+          {/* Center the calendar content */}
+          <div className="flex items-center justify-center flex-col">
+            <Outlet />
+          </div>
         </main>
         {/* Right Rail (icons removed, only avatar remains in header) */}
         <aside className="w-[60px] bg-background border-l border-gray-200 dark:border-gray-700 p-2 flex-shrink-0 flex flex-col items-center min-h-fit">

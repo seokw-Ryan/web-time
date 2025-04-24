@@ -122,37 +122,37 @@ const MonthView: React.FC = () => {
   };
 
   return (
-    <div className="h-full">
+    <div className="flex flex-col items-center justify-center">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-bold">
-          {format(currentDate, 'MMMM yyyy')}
-        </h1>
-        <div className="flex space-x-2">
-          <button 
-            onClick={handlePreviousMonth}
-            className="p-2 border rounded hover:bg-gray-100"
-            aria-label="Previous month"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-          </button>
+        <button 
+          onClick={handlePreviousMonth}
+          className="p-2 border rounded hover:bg-gray-100"
+          aria-label="Previous month"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+          </svg>
+        </button>
+        <div className="flex items-center">
+          <h1 className="text-xl font-bold">
+            {format(currentDate, 'MMMM yyyy')}
+          </h1>
           <button 
             onClick={handleToday}
-            className="px-3 py-2 border rounded hover:bg-gray-100"
+            className="px-3 py-2 border rounded hover:bg-gray-100 ml-4"
           >
             Today
           </button>
-          <button 
-            onClick={handleNextMonth}
-            className="p-2 border rounded hover:bg-gray-100"
-            aria-label="Next month"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-            </svg>
-          </button>
         </div>
+        <button 
+          onClick={handleNextMonth}
+          className="p-2 border rounded hover:bg-gray-100"
+          aria-label="Next month"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+          </svg>
+        </button>
       </div>
 
       {isLoading ? (
@@ -160,11 +160,10 @@ const MonthView: React.FC = () => {
           <p>Loading calendar...</p>
         </div>
       ) : (
-        <div className="relative flex-1 overflow-auto">
-          <div className="grid grid-cols-7 gap-px bg-[#E8EAED] dark:bg-[#3C4043] rounded-lg overflow-hidden">
+      <div className="relative overflow-auto">
+        <div className="grid grid-cols-7 gap-px bg-[#E8EAED] dark:bg-[#3C4043] rounded-lg overflow-hidden w-max">
             {calendarDays.map((day, index) => renderDay(day, index))}
           </div>
-          <div className="pointer-events-none absolute top-0 right-0 bottom-[64px] w-8 bg-gradient-to-l from-transparent to-[#E8EAED] dark:to-[rgba(0,0,0,0.25)]"></div>
         </div>
       )}
     </div>

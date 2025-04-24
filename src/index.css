@@ -66,3 +66,5 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Removed calendar-specific width overrides to let Tailwind container handle this */

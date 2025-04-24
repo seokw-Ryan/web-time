@@ -40,8 +40,9 @@ export default function WeekView() {
   }, [today])
 
   return (
-    <section className="relative overflow-auto h-full">
-      <div className="grid grid-cols-8 min-w-[1200px] relative">
+    <section className="relative overflow-auto">
+      <div>
+        <div className="grid grid-cols-8 min-w-[1200px] relative">
         {/* Time labels */}
         <div className="border-r bg-gray-50 dark:bg-gray-800">
           {hours.map((h, i) => (
@@ -88,6 +89,7 @@ export default function WeekView() {
           className="absolute left-0 right-0 h-px bg-red-500"
           style={{ top: `${(getHours(new Date()) + getMinutes(new Date()) / 60) * HOUR_HEIGHT}px` }}
         />
+        </div>
       </div>
     </section>
   )

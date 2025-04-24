@@ -90,7 +90,7 @@ const DayView: React.FC = () => {
   };
 
   return (
-    <div className="h-full">
+    <div className="flex flex-col items-center justify-center">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-bold">
           {format(currentDate, 'EEEE, MMMM d, yyyy')}

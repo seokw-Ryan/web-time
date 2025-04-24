@@ -4,6 +4,15 @@ export default {
   darkMode: 'class',
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      center: true,      // Enable automatic centering
+      padding: {
+        DEFAULT: '0rem',  // No default padding
+      },
+      screens: {
+        '2xl': '1400px'  // Max width for ultra-wide monitors
+      },
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
