@@ -7,7 +7,6 @@ import { dirname, resolve } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -49,6 +48,18 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src')
+    }
+  },
+  server: {
+    host: '0.0.0.0',          // allows external access
+    port: 5173,               // Vite's default dev port
+    strictPort: true,
+    watch: {
+      usePolling: true        // crucial for file change detection in Docker
+    },
+    proxy: {
+      '/events': 'http://server:3000',
+      '/reminders': 'http://server:3000'
     }
   }
 })
