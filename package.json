@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@types/uuid": "^9.0.8",
-    "axios": "^1.8.4",
+    "axios": "^1.9.0",
     "date-fns": "^2.30.0",
     "express": "^5.1.0",
     "ics": "^3.5.0",
