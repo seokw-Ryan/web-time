@@ -1,0 +1,15 @@
+/* Hide on mobile */
+@media (hover: hover) {
+  .scrollbar {
+    scrollbar-width: thin;
+  }
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar-thumb-border {
+    background-color: theme('colors.border.DEFAULT / 40%');
+  }
+  .dark .scrollbar-thumb-border-dark {
+    background-color: theme('colors.border.muted / 40%');
+  }
+} 

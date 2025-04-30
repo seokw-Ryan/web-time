@@ -142,22 +142,22 @@ const DayView: React.FC = () => {
           <p>Loading events...</p>
         </div>
       ) : (
-        <div className="overflow-auto h-[calc(100vh-240px)]">
+        <div className="overflow-auto h-[calc(100vh-240px)] scrollbar scrollbar-thumb-border dark:scrollbar-thumb-border-dark">
           {/* All-day events */}
           <div className="mb-4">
-            <h2 className="text-sm font-medium text-gray-500 mb-2">ALL DAY</h2>
-            <div className="bg-white rounded-lg shadow">
+            <h2 className="text-sm font-medium text-foreground-secondary dark:text-foreground-tertiary mb-2">ALL DAY</h2>
+            <div className="bg-surface dark:bg-surface-muted rounded-lg shadow">
               {getDayEvents()
                 .filter(event => event.isAllDay)
                 .map((event, index) => (
                   <div 
                     key={index}
-                    className="p-3 border-b last:border-0 cursor-pointer hover:bg-blue-50"
+                    className="p-3 border-b border-border dark:border-border-muted last:border-0 cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20"
                     onClick={() => handleEventClick(event.id)}
                   >
                     <div className="font-medium">{event.title}</div>
                     {event.location && (
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-foreground-secondary dark:text-foreground-tertiary">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -168,27 +168,27 @@ const DayView: React.FC = () => {
                   </div>
                 ))}
               {getDayEvents().filter(event => event.isAllDay).length === 0 && (
-                <div className="p-3 text-gray-500 text-center">No all-day events</div>
+                <div className="p-3 text-foreground-secondary dark:text-foreground-tertiary text-center">No all-day events</div>
               )}
             </div>
           </div>
           
           {/* Time-based events */}
           <div>
-            <h2 className="text-sm font-medium text-gray-500 mb-2">SCHEDULE</h2>
-            <div className="bg-white rounded-lg shadow">
+            <h2 className="text-sm font-medium text-foreground-secondary dark:text-foreground-tertiary mb-2">SCHEDULE</h2>
+            <div className="bg-surface dark:bg-surface-muted rounded-lg shadow">
               {timeSlots.map((hour, index) => {
                 const hourEvents = getHourEvents(hour);
                 return (
-                  <div key={index} className="flex border-b last:border-0">
-                    <div className="w-16 py-3 px-2 text-right text-sm text-gray-500">
+                  <div key={index} className="flex border-b border-border dark:border-border-muted last:border-0">
+                    <div className="w-16 py-3 px-2 text-right text-sm text-foreground-secondary dark:text-foreground-tertiary">
                       {format(new Date().setHours(hour, 0, 0, 0), 'h a')}
                     </div>
-                    <div className="flex-1 py-1 pl-4 border-l">
+                    <div className="flex-1 py-1 pl-4 border-l border-border dark:border-border-muted">
                       {hourEvents.map((event, eventIndex) => (
                         <div 
                           key={eventIndex}
-                          className="bg-blue-100 text-blue-700 p-2 my-1 rounded cursor-pointer"
+                          className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 p-2 my-1 rounded cursor-pointer"
                           onClick={() => handleEventClick(event.id)}
                         >
                           <div className="font-medium">{event.title}</div>

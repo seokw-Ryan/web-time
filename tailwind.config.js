@@ -15,12 +15,15 @@ export default {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
+        border: { DEFAULT: '#e5e7eb', muted: '#2d2d2d' },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        surface: { DEFAULT: '#ffffff', muted: '#1e1e1e' },
         primary: "hsl(var(--primary))",
         secondary: "hsl(var(--secondary))",
         accent: "hsl(var(--accent))",
+        'foreground-secondary': '#4b5563',
+        'foreground-tertiary': '#9ca3af',
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
