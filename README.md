@@ -1,39 +1,63 @@
-# Minimal Calendar App
+# Web Time Management Application
 
-A lightweight, installable calendar PWA that runs on Windows, macOS, Android, and iOS, with one unified TypeScript codebase and minimal binary sizes.
+A modern, lightweight calendar PWA for efficient time management across all major platforms with a single unified TypeScript codebase.
 
-## Features
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-- **Multiple Views**: Month, week, and day views with fast rendering
-- **Event Management**: Create, read, update, and delete events with support for all-day and recurring events
-- **Offline Support**: Works offline with local storage
-- **Notifications**: Local reminders for upcoming events
-- **ICS Import/Export**: Import and export calendar events in iCalendar format
-- **PWA**: Installable on all major platforms
+## 🚀 Features
 
-## Technology Stack
+- **Multiple Calendar Views**
+  - Month view with event previews
+  - Week view with time slots
+  - Day view for detailed scheduling
 
-- **Language**: TypeScript
-- **UI Framework**: React with Vite
-- **Storage**: IndexedDB via localForage
-- **Date Utilities**: date-fns
-- **Recurrence Rules**: rrule.js
-- **ICS Handling**: ics npm package
-- **Styling**: TailwindCSS
+- **Comprehensive Event Management**
+  - Create, read, update, and delete events
+  - Support for all-day events
+  - Recurring events (daily, weekly, monthly, yearly)
+  - Event notifications and reminders
 
-## Getting Started
+- **User Experience**
+  - Dark/Light mode with system preference detection
+  - Responsive design for all screen sizes
+  - Offline support via local storage
+  - PWA installable on all platforms
+
+- **Data Handling**
+  - iCalendar (ICS) import/export
+  - Cross-device synchronization
+
+## 🛠️ Technology Stack
+
+### Frontend
+- TypeScript with React
+- TailwindCSS for styling
+- React Router for navigation
+- date-fns for date management
+- rrule.js for recurring events
+- IndexedDB via localForage
+
+### Backend
+- Express.js (Node.js)
+- PostgreSQL database
+- RESTful API architecture
+
+### DevOps
+- Docker and Docker Compose
+- Vite build system
+
+## 🚦 Getting Started
 
 ### Prerequisites
-
-- Node.js (v16 or newer)
-- npm or pnpm
+- Node.js (v16+)
+- npm, yarn, or pnpm
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/seokw-Ryan/calendar-app.git
-cd calendar-app
+git clone https://github.com/yourusername/web-time.git
+cd web-time
 
 # Install dependencies
 npm install
@@ -42,89 +66,102 @@ npm install
 npm run dev
 ```
 
-The app will be available at http://localhost:5173
+Access the app at http://localhost:5173
 
 ### Building for Production
 
 ```bash
-# Build for web
+# Build the application
 npm run build
 
-# Serve the built app
+# Preview production build
 npm run preview
 ```
 
-### Docker Support
+### Docker Deployment
 
 ```bash
-# Production build
+# Production deployment
 docker-compose up web
 
-# Development with hot-reload
+# Development with hot reload
 docker-compose up dev
 ```
 
-## Deployment
+## 📱 Cross-Platform Installation
 
-### Web Deployment
+### As a PWA
+1. Open the application in a compatible browser
+2. Click "Install" or use the browser's "Add to Home Screen" option
 
-The built application can be deployed to any static hosting service like Netlify, Vercel, or GitHub Pages.
-
-### Desktop Apps
-
-For desktop applications, you can use Tauri to package the application:
-
-```bash
-# Install Tauri CLI
-npm install -g @tauri-apps/cli
-
-# Build with Tauri
-tauri build
-```
-
-### Mobile Apps
-
-For mobile applications, you can use Capacitor:
+### Desktop Options
+Package using Tauri for smaller, native binaries:
 
 ```bash
-# Install Capacitor
-npm install -g @capacitor/cli
-
-# Initialize Capacitor
-npx cap init
-
-# Add platforms
-npx cap add android
-npx cap add ios
-
-# Build web assets
-npm run build
-
-# Sync assets to native projects
-npx cap sync
+npm run tauri:build
 ```
 
-## Project Structure
+### Mobile Options
+Use Capacitor for native mobile builds:
 
-```
-calendar-app/
-├── public/            # Static assets, manifest, etc.
-├── src/
-│   ├── components/    # Reusable UI components
-│   ├── routes/        # Page components
-│   ├── hooks/         # Custom React hooks
-│   ├── lib/           # Utility functions
-│   ├── db/            # Database operations
-│   └── styles/        # CSS and Tailwind
-├── Dockerfile         # Production Docker config
-├── Dockerfile.dev     # Development Docker config
-└── docker-compose.yml # Docker Compose config
+```bash
+npm run cap:build
+npm run cap:sync
 ```
 
-## License
+## 📂 Project Structure
 
-MIT
+```
+web-time/
+├── src/                # Frontend source code
+│   ├── components/     # Reusable UI components
+│   ├── routes/         # View components (month, week, day)
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility functions
+│   ├── db/             # Database operations
+│   └── styles/         # CSS and Tailwind config
+├── server/             # Backend Express application
+│   ├── controllers/    # Request handlers
+│   ├── models/         # Data models
+│   └── routes/         # API endpoints
+├── public/             # Static assets
+└── docker/             # Docker configuration files
+```
 
-## Contributing
+## 🔐 Security Considerations
+
+- API validation and sanitization
+- CORS configuration for controlled access
+- Environment-based configurations
+
+## 🔄 Development Workflow
+
+- Hot module replacement with Vite
+- TypeScript type checking for improved code quality
+- ESLint integration
+
+## 🌟 Future Roadmap
+
+- [ ] Enhanced collaboration with multi-user calendar sharing
+- [ ] Advanced time analytics dashboard
+- [ ] Third-party integrations (Google Calendar, Outlook)
+- [ ] AI-powered scheduling suggestions
+- [ ] Enhanced mobile-specific features
+
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Contact
+
+Project Link: [https://github.com/yourusername/web-time](https://github.com/yourusername/web-time)
