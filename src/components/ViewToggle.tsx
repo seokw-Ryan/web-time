@@ -27,8 +27,8 @@ export default function ViewToggle() {
         <button
           key={o.id}
           onClick={() => navigate(`/${o.id}`)}
-          className={`px-3 py-1 rounded ${
-            pathname.startsWith(`/${o.id}`) ? 'bg-blue-600 text-white' : 'bg-zinc-700'
+          className={`px-3 py-1 rounded text-white ${
+            pathname.startsWith(`/${o.id}`) ? 'bg-blue-600' : 'bg-zinc-700'
           }`}
         >
           {o.label}

@@ -54,18 +54,6 @@ const Layout = () => {
         <div className="flex-1" />
         {/* Global icons */}
         <div className="flex items-center space-x-2">
-          {/* Search */}
-          <button className="p-2 rounded hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.08)] focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-          {/* Help */}
-          <button className="p-2 rounded hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.08)] focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-foreground" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a3 3 0 00-3 3h2a1 1 0 112 0 1 1 0 11-1 1h-1v2h1a1 1 0 010 2H9a1 1 0 110-2h1v-1a3 3 0 00-3-3z" clipRule="evenodd" />
-            </svg>
-          </button>
           {/* Settings */}
           <button onClick={toggleTheme} className="p-2 rounded hover:bg-[rgba(0,0,0,0.06)] dark:hover:bg-[rgba(255,255,255,0.08)] focus:outline-none">
             {theme === 'light' ? <span className="text-2xl text-foreground">🌙</span> : <span className="text-2xl text-foreground">☀️</span>}
