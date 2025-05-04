@@ -32,7 +32,7 @@ A lightweight, installable calendar PWA that runs on Windows, macOS, Android, an
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/calendar-app.git
+git clone https://github.com/seokw-Ryan/calendar-app.git
 cd calendar-app
 
 # Install dependencies
